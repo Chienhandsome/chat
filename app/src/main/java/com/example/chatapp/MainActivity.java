@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity
+public  class MainActivity extends AppCompatActivity
 {
     TextView lichSuChat;
     TextView nhapText;

@@ -8,7 +8,7 @@
     android:background="#FFFFFF"
     tools:context=".MainActivity">
 
-    <LinearLayout
+     <LinearLayout
         android:id="@+id/head"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
