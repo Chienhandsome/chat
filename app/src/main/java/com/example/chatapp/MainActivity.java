@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 public  class MainActivity extends AppCompatActivity
 {
+    MessageCenter messageCenter;
+    final String partnerID = "Bimmm";
+    final String myUserID = "Bemmm";
     TextView lichSuChat;
     TextView nhapText;
     Button nutSend;
@@ -19,6 +22,20 @@ public  class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        messageCenter = new MessageCenter();
+
+        messageCenter.setMessageReceiver(myUserID, new MessageReceiver() {
+            @Override
+            public void onMessageReceived(String userID, String message) {
+                //Nhận được tin nhắn mới
+                runOnUiThread(() -> {
+                    // gắn tin nhắn lên màn hình
+                    textLichSu += "\n> "+userID+": "+message;
+                    lichSuChat.setText(textLichSu);
+                });
+            }
+        });
 
         lichSuChat = findViewById(R.id.lichsuchat);
         nhapText = findViewById(R.id.nhaptext);
@@ -33,7 +50,11 @@ public  class MainActivity extends AppCompatActivity
         
         nutSend.setOnClickListener(view ->
         {
-            textLichSu = textLichSu + "\n" +textNhap;
+            textNhap = nhapText.getText().toString();
+            // gửi tin nhắn cho partnerID
+            messageCenter.sendMessageTo(partnerID, textNhap);
+
+            textLichSu += "\n"+myUserID+": " +textNhap;
             lichSuChat.setText(textLichSu);
             textNhap = "";
             nhapText.setText(textNhap);
