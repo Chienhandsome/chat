@@ -23,7 +23,7 @@ public  class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        messageCenter = new MessageCenter();
+        messageCenter =  new MessageCenter();
 
         messageCenter.setMessageReceiver(myUserID, new MessageReceiver() {
             @Override
